@@ -307,6 +307,12 @@
 					}
 				}
 				self.isAnimating = false;
+
+				// focus the first input or textarea field
+				var focusable = document.querySelector( '.fs-current input, .fs-current textarea' );
+				if( focusable ) {
+					focusable.focus();
+				}
 			};
 
 		if( support.animations ) {
