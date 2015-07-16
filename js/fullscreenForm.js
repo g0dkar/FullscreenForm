@@ -72,7 +72,7 @@
 		// reached the review and submit step
 		onReview : function() { return false; },
 		onStep: function (step) { return false; },
-		strings: {
+		i18n: {
 			continueButton: "Continue",
 			errorRequired: "Please fill the field before continuing",
 			invalidEmail: "Please fill a valid email address"
@@ -122,7 +122,7 @@
 		this.ctrls = createElement( 'div', { cName : 'fs-controls', appendTo : this.el } );
 
 		// continue button (jump to next field)
-		this.ctrlContinue = createElement( 'button', { cName : 'fs-continue', inner: this.options.strings.continueButton || 'Continue', appendTo : this.ctrls } );
+		this.ctrlContinue = createElement( 'button', { cName : 'fs-continue', inner: this.options.i18n.continueButton || 'Continue', appendTo : this.ctrls } );
 		this._showCtrl( this.ctrlContinue );
 
 		// navigation dots
