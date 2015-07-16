@@ -281,7 +281,7 @@
 			classie.add( nextField, 'fs-show' );
 		}
 		
-		if (this.settings.onStep) { onStep.call(this, this.current); }
+		if (this.options.onStep) { onStep.call(this, this.current); }
 
 		// after animation ends remove added classes from fields
 		var self = this,
