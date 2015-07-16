@@ -70,7 +70,14 @@
 		// show [current field]/[total fields] status
 		ctrlNavPosition : true,
 		// reached the review and submit step
-		onReview : function() { return false; }
+		onReview : function() { return false; },
+		onStep: function (step) { return false; },
+		strings: {
+			continueButton: "Continue",
+			errorRequired: "Please fill the field before continuing",
+			invalidEmail: "Please fill a valid email address"
+			
+		}
 	};
 
 	/**
@@ -115,7 +122,7 @@
 		this.ctrls = createElement( 'div', { cName : 'fs-controls', appendTo : this.el } );
 
 		// continue button (jump to next field)
-		this.ctrlContinue = createElement( 'button', { cName : 'fs-continue', inner : 'Continue', appendTo : this.ctrls } );
+		this.ctrlContinue = createElement( 'button', { cName : 'fs-continue', inner: this.options.strings.continueButton || 'Continue', appendTo : this.ctrls } );
 		this._showCtrl( this.ctrlContinue );
 
 		// navigation dots
@@ -273,6 +280,8 @@
 			classie.add( nextField, 'fs-current' );
 			classie.add( nextField, 'fs-show' );
 		}
+		
+		if (this.settings.onStep) { onStep.call(this, this.current); }
 
 		// after animation ends remove added classes from fields
 		var self = this,
@@ -457,10 +466,10 @@
 		var message = '';
 		switch( err ) {
 			case 'NOVAL' : 
-				message = 'Please fill the field before continuing';
+				message = this.options.i18n.errorRequired || 'Please fill the field before continuing';
 				break;
 			case 'INVALIDEMAIL' : 
-				message = 'Please fill a valid email address';
+				message = this.options.i18n.invalidEmail || 'Please fill a valid email address';
 				break;
 			// ...
 		};
